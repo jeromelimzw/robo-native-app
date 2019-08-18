@@ -1,6 +1,16 @@
 import React from 'react';
 import Panel from '../Panel';
 import {StyleSheet, Text, SectionList} from 'react-native';
+import {
+  Burn,
+  ElectricTower,
+  WaterDrop,
+  Sprout,
+  Nico,
+  Honoka,
+  Umaru,
+  Yoshika,
+} from '../../../assets/icons';
 
 const styles = StyleSheet.create({
   header: {
@@ -19,19 +29,23 @@ const data = [
     title: 'everyday accounts',
     data: [
       {
-        picURL:
-          'http://images6.fanpop.com/image/photos/37500000/Yazawa-Nico-3-love-live-school-idol-project-37589016-748-600.jpg',
+        picURL: Nico,
         title: 'Checking',
         money: '$10,000.34',
       },
       {
-        picURL: '',
+        picURL: Honoka,
         title: 'Savings',
         money: '$10,000.34',
       },
       {
-        picURL: '',
+        picURL: Umaru,
         title: 'Others',
+        money: '$10,000.34',
+      },
+      {
+        picURL: Yoshika,
+        title: 'Regular',
         money: '$10,000.34',
       },
     ],
@@ -40,22 +54,22 @@ const data = [
     title: 'investment goals',
     data: [
       {
-        picURL: '',
+        picURL: WaterDrop,
         title: 'Retirement',
         money: '$10,000.34',
       },
       {
-        picURL: '',
+        picURL: Burn,
         title: 'Safety Net',
         money: '$10,000.34',
       },
       {
-        picURL: '',
+        picURL: ElectricTower,
         title: 'General Investing',
         money: '$10,000.34',
       },
       {
-        picURL: '',
+        picURL: Sprout,
         title: 'Education',
         money: '$10,000.34',
       },
@@ -68,7 +82,7 @@ const PanelList = () => {
     <SectionList
       sections={data}
       renderItem={({item}) => (
-        <Panel picUrl={item.picURL} title={item.title} money={item.money} />
+        <Panel picURL={item.picURL} title={item.title} money={item.money} />
       )}
       renderSectionHeader={({section}) => (
         <Text style={styles.header}>{section.title}</Text>

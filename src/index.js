@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
 import Button from './components/Button';
 import PanelList from './components/PanelList';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
-import {faGift} from '@fortawesome/free-solid-svg-icons';
+import NavBar from './components/NavBar';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  StatusBar,
+  Modal,
+  TouchableHighlight,
+} from 'react-native';
 
 const styles = StyleSheet.create({
   title: {
@@ -38,32 +44,36 @@ const styles = StyleSheet.create({
     marginRight: '5%',
     marginVertical: 15,
   },
-  nav: {
-    height: '25%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 10,
-    paddingTop: 10,
-  },
+
   netWorthBlock: {
     height: '75%',
     justifyContent: 'flex-end',
     paddingBottom: '7%',
   },
-  logo: {
-    fontFamily: 'Lato-Regular',
-    fontSize: 20,
-    color: 'white',
+  modal: {
+    backgroundColor: 'black',
+    marginTop: '45%',
+    marginHorizontal: '10%',
+  },
+  modalText: {
+    color: 'red',
+    fontSize: 30,
   },
 });
 
 export default class App extends Component {
   state = {
     netWorth: 1597523.58,
+    isModalVisible: false,
   };
 
   currencyFormatter = input => {
     return input.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  };
+
+  toggleModal = () => {
+    const currState = this.state.isModalVisible;
+    this.setState({isModalVisible: !currState});
   };
 
   handleDeposit = amount => {
@@ -71,16 +81,24 @@ export default class App extends Component {
     this.setState({netWorth: newWorth});
   };
 
+  navBarContent = () => {
+    return (
+      <View style={styles.modal}>
+        <TouchableHighlight onPress={() => this.toggleModal()}>
+          <Text style={styles.modalText}>Hide Modal</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  };
+
   render() {
     const {netWorth} = this.state;
+
     return (
       <View>
+        <StatusBar backgroundColor="#964b94" barStyle="light-content" />
         <View style={styles.top}>
-          <View style={styles.nav}>
-            <FontAwesomeIcon icon={faBars} color={'white'} size={20} />
-            <Text style={styles.logo}>bambu</Text>
-            <FontAwesomeIcon icon={faGift} color={'white'} size={20} />
-          </View>
+          <NavBar toggleNav={this.toggleModal} />
           <View style={styles.netWorthBlock}>
             <Text style={styles.title}>TOTAL NET WORTH</Text>
             <Text style={styles.price}>
@@ -94,6 +112,12 @@ export default class App extends Component {
             <Button buttonText="Deposit" handleDeposit={this.handleDeposit} />
           </View>
         </ScrollView>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.isModalVisible}>
+          {this.navBarContent()}
+        </Modal>
       </View>
     );
   }
