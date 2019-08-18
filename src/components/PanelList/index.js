@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     color: '#121418',
     textTransform: 'uppercase',
   },
+  list: {
+    paddingBottom: '20%',
+  },
 });
 
 const data = [
@@ -88,6 +91,7 @@ const PanelList = () => {
         <Text style={styles.header}>{section.title}</Text>
       )}
       keyExtractor={(item, index) => index}
+      style={styles.list}
     />
   );
 };

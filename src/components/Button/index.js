@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
     width: 120,
     paddingHorizontal: 20,
     paddingVertical: 10,
+    borderColor: 'rgba(0,0,0,0.2)',
+    borderRightWidth: 5,
+    borderBottomWidth: 5,
   },
   buttonText: {
     color: 'white',

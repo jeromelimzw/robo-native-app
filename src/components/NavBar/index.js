@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const NavBar = ({toggleNav}) => {
+const NavBar = ({toggleNav, openDrawer}) => {
   return (
     <View style={styles.nav}>
-      <TouchableOpacity onPress={() => alert('a winner is you')}>
+      <TouchableOpacity onPress={openDrawer}>
         <FontAwesomeIcon icon={faBars} color={'white'} size={20} />
       </TouchableOpacity>
       <Image source={Logo} style={styles.logo} />
