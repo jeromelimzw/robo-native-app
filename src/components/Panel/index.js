@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const Panel = ({picURL, title, money}) => {
+const Panel = ({picURL, title, money, route, navigate}) => {
   return (
-    <TouchableOpacity style={styles.panel}>
+    <TouchableOpacity style={styles.panel} onPress={() => navigate(route)}>
       <View style={styles.avatarBlock}>
         <Image source={picURL} style={styles.avatar} />
         <Text style={styles.content}>{title}</Text>

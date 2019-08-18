@@ -35,21 +35,25 @@ const data = [
         picURL: Nico,
         title: 'Checking',
         money: '$10,000.34',
+        route: 'Account',
       },
       {
         picURL: Honoka,
         title: 'Savings',
         money: '$10,000.34',
+        route: 'Account',
       },
       {
         picURL: Umaru,
         title: 'Others',
         money: '$10,000.34',
+        route: 'Account',
       },
       {
         picURL: Yoshika,
         title: 'Regular',
         money: '$10,000.34',
+        route: 'Account',
       },
     ],
   },
@@ -60,32 +64,42 @@ const data = [
         picURL: WaterDrop,
         title: 'Retirement',
         money: '$10,000.34',
+        route: 'Goal',
       },
       {
         picURL: Burn,
         title: 'Safety Net',
         money: '$10,000.34',
+        route: 'Goal',
       },
       {
         picURL: ElectricTower,
         title: 'General Investing',
         money: '$10,000.34',
+        route: 'Goal',
       },
       {
         picURL: Sprout,
         title: 'Education',
         money: '$10,000.34',
+        route: 'Goal',
       },
     ],
   },
 ];
 
-const PanelList = () => {
+const PanelList = ({navigate}) => {
   return (
     <SectionList
       sections={data}
       renderItem={({item}) => (
-        <Panel picURL={item.picURL} title={item.title} money={item.money} />
+        <Panel
+          picURL={item.picURL}
+          title={item.title}
+          money={item.money}
+          navigate={navigate}
+          route={item.route}
+        />
       )}
       renderSectionHeader={({section}) => (
         <Text style={styles.header}>{section.title}</Text>
